@@ -2,9 +2,26 @@
   <head>
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script>
+    AFRAME.registerComponent('astronaut-click', {
+  schema: {type: 'string'},
+
+
+  init: function () {
+    let astronaut = document.querySelector("#astronaut");
+
+    this.el.addEventListener('click', function() {
+      console.log("Astro clicked");
+      astronaut.setAttribute('animation-mixer', 'clip: wave');
+    });
+
+  }
+});
+</script>
   </head>
   <body>
-    <a-scene>
+    <a-scene moonlanding>
       <a-assets>
         <a-asset-item id="astronaut" src="models/astronaut/scene.gltf">
         </a-asset-item>
@@ -25,7 +42,7 @@
       </a-assets>
       <a-entity id="mouseCursor" cursor="rayOrigin: mouse">
       </a-entity>
-      <a-entity gltf-model="#astronaut" position="0.3 0.15 0.8" scale="0.18 0.18 0.18" rotation="5 -17 0" animation-mixer="clip:wave">
+      <a-entity gltf-model="#astronaut" position="0.3 0.15 0.8" scale="0.18 0.18 0.18" rotation="5 -17 0" astronaut-click="" animation-mixer="clip: wave">
       </a-entity>
       <a-entity gltf-model="#flag" position="-0.1 0 0.9" scale="0.0008 0.0008 0.0008" rotation="0 -40 2" animation-mixer>
       </a-entity>
@@ -42,7 +59,9 @@
       <a-entity light="type: directional; color: #EEE; intensity: 2" position="0 1 1">
       </a-entity>
       <a-entity position="-0.1 -1.25 1.5" rotation="0 0 0">
-        <a-camera></a-camera>
+        <a-camera>
+          <a-cursor></a-cursor>
+        </a-camera>
       </a-entity>
 
       <a-sky color="#000"></a-sky>
