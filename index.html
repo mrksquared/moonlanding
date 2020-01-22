@@ -23,7 +23,7 @@
         <a-asset-item id="stars" src="models/stars/scene.gltf">
         </a-asset-item>
       </a-assets>
-      <a-entity id="mouseCursor" cursor="rayOrigin: mouse">
+      <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: #earth">
       </a-entity>
       <a-entity gltf-model="#astronaut" position="0.3 0.15 0.8" scale="0.18 0.18 0.18" rotation="5 -17 0" animation-mixer="clip:wave">
       </a-entity>
